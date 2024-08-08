@@ -1,3 +1,15 @@
 <div id="new-ticket">
-  <app-new-ticket></app-new-ticket>
+  <app-new-ticket (addTicket)="onAddTicket($event)"></app-new-ticket>
 </div>
+<!-- displya the tickets list -->
+ <div>
+  <ul>
+    @for(tick of tickets; track tick.id){
+      <li>
+        <app-ticket [inputData]="tick" (closeTicket)="onCloseTicket(tick.id)"></app-ticket>
+      </li>
+    } @empty {
+      <p>No tickets</p>
+    }
+  </ul>
+ </div>
