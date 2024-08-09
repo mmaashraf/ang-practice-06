@@ -11,7 +11,13 @@ import { TicketComponent } from './ticket/ticket.component';
   styleUrl: './tickets.component.css',
 })
 export class TicketsComponent {
+
+  tickets: Ticket[] = [];
+  
   onAddTicket(ticketData: { title: string; text: string }) {
+
+    console.log(" am i geting this ", ticketData);
+    
     const ticket: Ticket = {
       id: Math.random().toString(),
       title: ticketData.title,
@@ -20,7 +26,7 @@ export class TicketsComponent {
     };
     this.tickets.push(ticket);
   }
-  tickets: Ticket[] = [];
+
 
   onCloseTicket(id: string) {
     // this.tickets = this.tickets.filter((ticket) => {

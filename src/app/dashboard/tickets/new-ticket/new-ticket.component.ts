@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-ticket.component.css',
 })
 export class NewTicketComponent implements AfterViewInit, OnInit {
+  enteredTitle = '';
+  enteredText = '';
 
   addTicket =  output<{
     title: string,
@@ -28,24 +30,38 @@ export class NewTicketComponent implements AfterViewInit, OnInit {
   // }
   ngOnInit() {
     console.log("ngOnInit");
-    console.log(this.form?.nativeElement);
   }
-  onSubmit(inputTitle: string, inputText: string) {
+  // onSubmit(inputTitle: string, inputText: string) {
+  //   console.log("submitted ");
+  //   const enteredTitle = inputTitle, enteredText = inputText;
+  //   console.log(enteredTitle, enteredText);
+  //   this.form?.nativeElement.reset();
+
+  //   // trigger something to add to list
+  //   this.addTicket.emit({
+  //     title: enteredTitle,
+  //     text: enteredText,
+  //   });
+  // }
+
+  onSubmit() {
     console.log("submitted ");
-    const enteredTitle = inputTitle, enteredText = inputText;
-    console.log(enteredTitle, enteredText);
-    this.form?.nativeElement.reset();
+
+    console.log("TOOOOO ", this.enteredTitle, this.enteredText);
+    // this.form?.nativeElement.reset();
 
     // trigger something to add to list
     this.addTicket.emit({
-      title: enteredTitle,
-      text: enteredText,
+      title: this.enteredTitle,
+      text: this.enteredText,
     });
+
+    this.enteredText = '';
+    this.enteredTitle = '';
   }
 
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit");
-    console.log(this.form?.nativeElement);
   }
 
 }
